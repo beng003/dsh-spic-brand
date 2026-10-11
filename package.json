@@ -1,0 +1,60 @@
+{
+  "name": "dsh-spic-brand",
+  "version": "0.1.0",
+  "description": "把 DSH Web GUI 的 DeepSeek 品牌标识（侧栏品牌行、会话首屏 hero、favicon 与窗口标题）替换为国家电投 SPIC 标识。纯客户端插件，不修改也不禁用任何官方或第三方插件。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "theme",
+    "brand",
+    "spic",
+    "国家电投"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beng003/dsh-spic-brand.git"
+  },
+  "homepage": "https://github.com/beng003/dsh-spic-brand#readme",
+  "bugs": {
+    "url": "https://github.com/beng003/dsh-spic-brand/issues"
+  },
+  "author": "beng003",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "src",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "verify": "node scripts/verify-client.mjs",
+    "assets": "python3 scripts/gen-assets.py",
+    "deploy": "rsync -av --delete lib/ ~/.dsh/profiles/${DSH_PROFILE:-desktop}/node_modules/dsh-spic-brand/lib/"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "license": "MIT"
+}

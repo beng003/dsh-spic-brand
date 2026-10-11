@@ -1,0 +1,14 @@
+# dsh-spic-brand bundle patch —— 由 package.json 的 dsh.bundle.patch 引用。
+#
+# 有了它，`dsh plugin add` 之后插件会被自动 insert 进 profile 的 boot graph，
+# 用户不必再手动编辑 ~/.dsh/profiles/<profile>/cordis.patch.yml。
+#
+# 一行 insert 即挂载 Host 半身；浏览器半身由 package.json 的 dsh.client 声明，
+# 并绑定在 name 为裸包名的这一行上（子路径行不会携带半身）。
+#
+# 本插件是纯客户端品牌包：不禁用任何官方插件，只把自己插进去。
+# 官方 @deepseek-ai/dsh-client-ui-brand-official 仍然注册着，被本插件的
+# priority: -1 遮蔽（single 槽 lowest renders），随时可撤销。
+- insert:
+    - id: spic-brand
+      name: "dsh-spic-brand"
